@@ -1,14 +1,12 @@
 source 'https://rubygems.org'
 
 gem 'rake'
-gem 'hanami',       '~> 1.0'
-gem 'hanami-model', '~> 1.0'
+gem 'hanami',       git: 'git@github.com:hanami/hanami.git'
+gem 'hanami-model', git: 'git@github.com:hanami/model.git'
 
 gem 'pg'
 
 gem 'nokogiri', '1.7.1'
-gem 'rom-sql', '1.2'
-gem 'dry-types', '0.9.4'
 
 group :development do
   # Code reloading
@@ -34,3 +32,7 @@ gem 'hanami-bootstrap'
 gem 'jquery-hanami'
 gem 'sass'
 gem 'rgeo'
+gem 'rgeo-shapefile'
+
+gem 'roar'
+gem 'multi_json'
