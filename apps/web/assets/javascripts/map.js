@@ -8,11 +8,14 @@ $(document).ready(function() {
 
   map.createPane('lines');
   map.getPane('lines').style.zIndex = 500;
+  map.createPane('polygons');
+  map.getPane('polygons').style.zIndex = 400;
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
   loadPlaces();
   loadLines();
+  loadPolygons();
 
   map.on('moveend', loadPlaces);
   map.on('moveend', loadLines);
