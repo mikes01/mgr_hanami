@@ -3,6 +3,7 @@
 #
 # Example:
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
+get '/lines', to: 'lines#index'
 get '/points', to: 'points#index'
 get '/map', to: 'map#index'
 root to: 'map#index'

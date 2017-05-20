@@ -6,11 +6,16 @@ $(document).ready(function() {
       zoom: 16
   });
 
+  map.createPane('lines');
+  map.getPane('lines').style.zIndex = 500;
+
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
   loadPlaces();
+  loadLines();
 
   map.on('moveend', loadPlaces);
+  map.on('moveend', loadLines);
 
 });
 

@@ -1,26 +1,25 @@
-module Web::Controllers::Points
+module Web::Controllers::Lines
   class Index
     include Web::Action
-    accept :json
 
-    params do
+     params do
       required(:data).schema do
         required(:south_west_lat).filled
         required(:south_west_lng).filled
         required(:north_east_lat).filled
         required(:north_east_lng).filled
-        required(:object_types).filled
+        required(:road_types).filled
       end
     end
 
     def call(params)
-      points = PointRepository.new.in_area(params[:data][:south_west_lat],
+      lines = LineRepository.new.in_area(params[:data][:south_west_lat],
         params[:data][:south_west_lng], params[:data][:north_east_lat],
-        params[:data][:north_east_lng], params[:data][:object_types])
+        params[:data][:north_east_lng], params[:data][:road_types])
 
 
-      hashes = points.map do |point|
-        Web::Representers::Point.new(point).to_hash
+      hashes = lines.map do |line|
+        Web::Representers::Line.new(line).to_hash
       end
 
       self.body   = hashes.to_json
