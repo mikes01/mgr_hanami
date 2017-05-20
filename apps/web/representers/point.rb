@@ -13,6 +13,7 @@ module Web::Representers
     property :county
     property :commune
     property :terc
-    property :coordinates_as_array
+    property :coordinates_text
+    property :color
   end
 end

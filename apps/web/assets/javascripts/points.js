@@ -1,4 +1,5 @@
 var renderedPoints = [];
+wkt = new Wkt.Wkt();
 
 loadPlaces = function() {
   parameters = getMapBounds()
@@ -11,7 +12,7 @@ loadPlaces = function() {
         data.forEach(function(point) {
 
           var markerHtmlStyles =
-            "background-color: " + "#FF00FF" +"; \
+            "background-color: " + point.color +"; \
             width: 3rem;\
             height: 3rem;\
             display: block;\
@@ -27,7 +28,7 @@ loadPlaces = function() {
             iconAnchor: [0, -5],
             html: '<span style="' + markerHtmlStyles + '" />'
           })
-          markers.push(L.marker(point.coordinates_as_array, {title: point.name, icon: icon})
+          markers.push(wkt.read(point.coordinates_text).toObject({title: point.name, icon: icon})
             .on('click', L.bind(onPointClick, null, point))
             .bindTooltip(point.name,
             {
