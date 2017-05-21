@@ -1,6 +1,7 @@
 var map = null;
 
 $(document).ready(function() {
+  $(".form-horizontal").hide()
   map = L.map('map', {
       center: [51.1000000, 17.0333300],
       zoom: 16

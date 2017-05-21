@@ -1,6 +1,6 @@
 class Point < Hanami::Entity
   include CoordinatesHelper
-  
+
   OBJECT_TYPES = {"część kolonii" => "#8fa3bf", "część miasta" => "#e51f00",
     "część osady" => "#ffa280", "część przysiółka" => "#e6f23d",
     "część wsi" => "#a6a37c", "kolonia" => "#3b5900", "kolonia kolonii" => "#3df23d",
@@ -13,6 +13,8 @@ class Point < Hanami::Entity
     "przysiółek" => "#33cc85", "przysiółek kolonii" => "#238c77",
     "przysiółek osady" => "#0099bf", "przysiółek wsi" => "#002966",
     "schronisko turystyczne" => "#4d4d99", "wieś" => "#716080"}
+
+  OBJECT_CLASSES = ["miejscowość"]
 
   def color
     OBJECT_TYPES[object_type]

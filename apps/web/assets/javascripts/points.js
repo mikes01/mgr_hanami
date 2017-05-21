@@ -8,7 +8,6 @@ loadPlaces = function() {
     function (data) {
       if(renderPoints) {
         var markers = []
-        console.log(data)
         data.forEach(function(point) {
 
           var markerHtmlStyles =
@@ -37,7 +36,6 @@ loadPlaces = function() {
             }
           ))
         })
-        console.log(markers)
         var points = L.layerGroup(markers);
         var overlayMaps = {
           "points": points
@@ -54,9 +52,10 @@ onPointClick = function(point, event) {
   $(".form-horizontal").hide()
   form = $("#point_remote_form.edit")
   form[0].action = "points/" + point.id
-  form.find('a')[0].href = form[0].action
+  //form.find('a')[0].href = form[0].action
   form.find("#point_name").val(point.name)
-  form.find("#point_coordinates").val(point.coordinates)
+  form.find("#point_coordinates").val(point.coordinates_text)
+  
   form.find("#point_object_type").val(point.object_type)
   form.find("#point_object_class").val(point.object_class)
   form.find("#point_terc").val(point.terc)

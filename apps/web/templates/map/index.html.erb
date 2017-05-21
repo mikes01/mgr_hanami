@@ -1,3 +1,30 @@
+<div class="col-md-4">
+  <div class="row">
+    <div class="btn-group">
+    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Add <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu">
+      <li><a id="point">Point</a></li>
+    </ul>
+  </div>
+  <div class="row">
+    <div class="col-md-8">
+      <div id="form-holder">
+        <div id="point_remote_form_holder" class="col-md-12">
+          <%= render partial: "shared/point_form", locals: { point: Point.new, request_path: routes.points_path } %>
+        </div>
+
+        <div id="edit_point_remote_form_holder" class="col-md-12">
+          <%= render partial: "shared/point_form",
+            locals: { point: PointRepository.new.first, request_path: routes.point_path(PointRepository.new.first) } %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
 <div class="col-md-8" id="maps">
   <div id="mappage">
     <div id="map"></div>
