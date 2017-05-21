@@ -1,0 +1,29 @@
+
+<% submit_label = (class_name == 'new' ? 'Create' : 'Update') %>
+<% method = (class_name == 'new' ? 'post' : 'patch') %>
+
+<%= form_for :polygon, request_path, id: "polygon_remote_form",
+  class: "form-horizontal #{class_name}", method: method do
+    div class: "form-group" do
+      label :name
+      text_field :name, class: "form-control"
+    end
+    div class: "form-group" do
+      label :coordinates
+      text_area :coordinates, class: "form-control"
+    end
+    div class: "form-group" do
+      label :unit_type
+      select :unit_type, (Polygon::UNIT_TYPES.keys.map.with_index { |k, i| [k, i] }.to_h), class: "form-control"
+    end
+    div class: "form-group" do
+      label :terc
+      text_field :terc, class: "form-control"
+    end
+    submit submit_label, class: "btn btn-default"
+    
+    if class_name == 'edit'
+      tag(:a, 'Delete', id: 'delete_polygon', class: 'btn btn-danger', href: request_path) 
+    end
+  end
+%>

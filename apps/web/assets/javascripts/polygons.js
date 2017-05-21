@@ -25,10 +25,10 @@ onPolygonClick = function(polygon, event) {
   form = $("#polygon_remote_form.edit")
   form[0].action = "polygons/" + polygon.id
   form.find('a')[0].href = form[0].action
-  form.find("#polygon_name").val(polygon.name)
-  form.find("#polygon_coordinates").val(polygon.coordinates)
-  form.find("#polygon_unit_type").val(polygon.unit_type)
-  form.find("#polygon_terc").val(polygon.terc)
+  form.find("#polygon-name").val(polygon.name)
+  form.find("#polygon-coordinates").val(polygon.coordinates_text)
+  form.find("#polygon-unit-type").val(polygon.unit_type)
+  form.find("#polygon-terc").val(polygon.terc)
   form.show()
 }
 

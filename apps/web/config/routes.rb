@@ -5,6 +5,6 @@
 # get '/hello', to: ->(env) { [200, {}, ['Hello from Hanami!']] }
 resources :lines, only: [:index, :create, :update, :destroy]
 resources :points, only: [:index, :create, :update, :destroy]
-get '/polygons', to: 'polygons#index'
+resources :polygons, only: [:index, :create, :update, :destroy]
 get '/map', to: 'map#index'
 root to: 'map#index'
