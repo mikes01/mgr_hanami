@@ -6,6 +6,7 @@
     </button>
     <ul class="dropdown-menu">
       <li><a id="point">Point</a></li>
+      <li><a id="line">Line</a></li>
     </ul>
   </div>
   <div class="row">
@@ -18,6 +19,15 @@
         <div id="edit_point_remote_form_holder" class="col-md-12">
           <%= render partial: "shared/point_form",
             locals: { class_name: 'edit', request_path: routes.point_path(PointRepository.new.first) } %>
+        </div>
+
+        <div id="line_remote_form_holder" class="col-md-12">
+          <%= render partial: "shared/line_form", locals: { class_name: 'new', request_path: routes.lines_path } %>
+        </div>
+
+        <div id="edit_line_remote_form_holder" class="col-md-12">
+          <%= render partial: "shared/line_form",
+            locals: { class_name: 'edit', request_path: routes.line_path(LineRepository.new.first) } %>
         </div>
       </div>
     </div>
