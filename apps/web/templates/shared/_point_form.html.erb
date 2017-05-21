@@ -37,9 +37,9 @@
       text_field :commune, class: "form-control"
     end
     submit submit_label, class: "btn btn-default"
-    # unless point.id.nil?
-    #   link_to 'Delete', point_path(point), class: 'btn btn-danger',
-    #     confirm: 'Are you sure?', method: :delete, remote: true
-    # end
+    
+    if class_name == 'edit'
+      tag(:a, 'Delete', id: 'delete_point', class: 'btn btn-danger', href: request_path) 
+    end
   end
 %>

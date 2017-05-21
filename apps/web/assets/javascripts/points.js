@@ -52,7 +52,7 @@ onPointClick = function(point, event) {
   $(".form-horizontal").hide()
   form = $("#point_remote_form.edit")
   form[0].action = "points/" + point.id
-  //form.find('a')[0].href = form[0].action
+  form.find('a')[0].href = form[0].action
   form.find("#point-name").val(point.name)
   form.find("#point-coordinates").val(point.coordinates_text)
 
