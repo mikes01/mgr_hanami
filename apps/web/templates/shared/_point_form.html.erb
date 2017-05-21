@@ -1,41 +1,41 @@
 
-<% options = (point.id.nil? ? { className: 'new', submitLabel: 'Create' } : { className: 'edit', submitLabel: 'Update' }) %>
+<% submit_label = (class_name == 'new' ? 'Create' : 'Update') %>
 
-<%= form_for point, request_path,
-  id: "point_remote_form", class: "form-horizontal #{options[:className]}" do
+<%= form_for :point, request_path, id: "point_remote_form",
+  class: "form-horizontal #{class_name}" do
     div class: "form-group" do
       label :name
-      text_field :name, id: 'point_name', class: "form-control"
+      text_field :name, class: "form-control"
     end
     div class: "form-group" do
       label :coordinates
-      text_field :coordinates, id: 'point_coordinates', class: "form-control"
+      text_field :coordinates, class: "form-control"
     end
     div class: "form-group" do
       label :object_type
-      select :object_type, (Point::OBJECT_TYPES.keys.map { |k| [k, k] }.to_h), id: 'point_object_type', class: "form-control"
+      select :object_type, (Point::OBJECT_TYPES.keys.map { |k| [k, k] }.to_h), class: "form-control"
     end
     div class: "form-group" do
       label :object_class
-      select :object_class, Point::OBJECT_CLASSES.map { |k| [k, k] }.to_h, id: 'point_object_class', class: "form-control"
+      select :object_class, Point::OBJECT_CLASSES.map { |k| [k, k] }.to_h, class: "form-control"
     end
     div class: "form-group" do
       label :terc
-      text_field :terc, id: 'point_terc', class: "form-control"
+      text_field :terc, class: "form-control"
     end
     div class: "form-group" do
       label :voivodeship
-      text_field :voivodeship, id: 'point_voivodeship', class: "form-control"
+      text_field :voivodeship, class: "form-control"
     end
     div class: "form-group" do
       label :county
-      text_field :county, id: 'point_county', class: "form-control"
+      text_field :county, class: "form-control"
     end
     div class: "form-group" do
       label :commune
-      text_field :commune, id: 'point_commune', class: "form-control"
+      text_field :commune, class: "form-control"
     end
-    submit options[:submitLabel], class: "btn btn-default"
+    submit submit_label, class: "btn btn-default"
     # unless point.id.nil?
     #   link_to 'Delete', point_path(point), class: 'btn btn-danger',
     #     confirm: 'Are you sure?', method: :delete, remote: true

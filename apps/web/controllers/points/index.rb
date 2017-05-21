@@ -18,7 +18,6 @@ module Web::Controllers::Points
         params[:data][:south_west_lng], params[:data][:north_east_lat],
         params[:data][:north_east_lng], params[:data][:object_types])
 
-
       hashes = points.map do |point|
         Web::Representers::Point.new(point).to_hash
       end

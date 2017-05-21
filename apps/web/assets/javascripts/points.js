@@ -53,15 +53,15 @@ onPointClick = function(point, event) {
   form = $("#point_remote_form.edit")
   form[0].action = "points/" + point.id
   //form.find('a')[0].href = form[0].action
-  form.find("#point_name").val(point.name)
-  form.find("#point_coordinates").val(point.coordinates_text)
-  
-  form.find("#point_object_type").val(point.object_type)
-  form.find("#point_object_class").val(point.object_class)
-  form.find("#point_terc").val(point.terc)
-  form.find("#point_voivodeship").val(point.voivodeship)
-  form.find("#point_county").val(point.county)
-  form.find("#point_commune").val(point.commune)
+  form.find("#point-name").val(point.name)
+  form.find("#point-coordinates").val(point.coordinates_text)
+
+  form.find("#point-object_type").val(point.object_type)
+  form.find("#point-object_class").val(point.object_class)
+  form.find("#point-terc").val(point.terc)
+  form.find("#point-voivodeship").val(point.voivodeship)
+  form.find("#point-county").val(point.county)
+  form.find("#point-commune").val(point.commune)
   form.show()
 }
 
