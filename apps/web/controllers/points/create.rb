@@ -22,10 +22,10 @@ module Web::Controllers::Points
         repository = PointRepository.new
         point = repository.create(point_params)
         self.status = 201
-        self.body = Web::Representers::Point.new(point).to_hash
+        self.body = Web::Representers::Point.new(point).to_hash.to_json
       else
         self.status = 422
-        self.body = params.errors
+        self.body = params.errors.to_json
       end
     end
 

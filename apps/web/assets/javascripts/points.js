@@ -1,7 +1,7 @@
 var renderedPoints = [];
 wkt = new Wkt.Wkt();
 
-loadPlaces = function() {
+loadPoints = function() {
   parameters = getMapBounds()
   parameters.object_types = pointTypes
   $.get("points", { data: parameters },
@@ -56,8 +56,8 @@ onPointClick = function(point, event) {
   form.find("#point-name").val(point.name)
   form.find("#point-coordinates").val(point.coordinates_text)
 
-  form.find("#point-object_type").val(point.object_type)
-  form.find("#point-object_class").val(point.object_class)
+  form.find("#point-object-type").val(point.object_type)
+  form.find("#point-object-class").val(point.object_class)
   form.find("#point-terc").val(point.terc)
   form.find("#point-voivodeship").val(point.voivodeship)
   form.find("#point-county").val(point.county)

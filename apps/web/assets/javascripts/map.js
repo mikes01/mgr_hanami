@@ -14,12 +14,13 @@ $(document).ready(function() {
 
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
 
-  loadPlaces();
+  loadPoints();
   loadLines();
   loadPolygons();
 
-  map.on('moveend', loadPlaces);
+  map.on('moveend', loadPoints);
   map.on('moveend', loadLines);
+  map.on('moveend', loadPolygons);
 
 });
 

@@ -1,8 +1,9 @@
 
 <% submit_label = (class_name == 'new' ? 'Create' : 'Update') %>
+<% method = (class_name == 'new' ? 'post' : 'patch') %>
 
 <%= form_for :point, request_path, id: "point_remote_form",
-  class: "form-horizontal #{class_name}" do
+  class: "form-horizontal #{class_name}", method: method do
     div class: "form-group" do
       label :name
       text_field :name, class: "form-control"
