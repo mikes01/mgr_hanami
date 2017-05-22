@@ -1,6 +1,21 @@
 var map = null;
 
+function formatState (state) {
+  if (!state.id) { return state.text; }
+
+  var $state = $(
+    '<span>' + '<input type="color" disabled="disabled" value="' + 
+    state.element.attributes.style.value.split(":")[1].trim() +
+    '">' + state.text + '</span>'
+  );
+  return $state
+};
+
 $(document).ready(function() {
+  $(".select2-input").select2({
+  templateResult: formatState,
+  templateSelection: formatState
+});
   $(".form-horizontal").hide()
   map = L.map('map', {
       center: [51.1000000, 17.0333300],

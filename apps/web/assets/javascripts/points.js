@@ -4,47 +4,49 @@ wkt = new Wkt.Wkt();
 loadPoints = function() {
   parameters = getMapBounds()
   parameters.object_types = pointTypes
+  if(pointTypes == null ) {
+    clearPoints();
+    return
+  }
   $.get("points", { data: parameters },
     function (data) {
-      if(renderPoints) {
-        var markers = []
-        data.forEach(function(point) {
+      var markers = []
+      data.forEach(function(point) {
 
-          var markerHtmlStyles =
-            "background-color: " + point.color +"; \
-            width: 3rem;\
-            height: 3rem;\
-            display: block;\
-            left: -1.5rem;\
-            top: -1.5rem;\
-            position: relative;\
-            border-radius: 3rem 3rem 0;\
-            transform: rotate(45deg);\
-            border: 1px solid #FFFFFF"
+        var markerHtmlStyles =
+          "background-color: " + point.color +"; \
+          width: 3rem;\
+          height: 3rem;\
+          display: block;\
+          left: -1.5rem;\
+          top: -1.5rem;\
+          position: relative;\
+          border-radius: 3rem 3rem 0;\
+          transform: rotate(45deg);\
+          border: 1px solid #FFFFFF"
 
-          var icon = L.divIcon({
-            className: 'customIcon',
-            iconAnchor: [0, -5],
-            html: '<span style="' + markerHtmlStyles + '" />'
-          })
-          markers.push(wkt.read(point.coordinates_text).toObject({title: point.name, icon: icon})
-            .on('click', L.bind(onPointClick, null, point))
-            .bindTooltip(point.name,
-            {
-              permanent: true,
-              direction: 'top'
-            }
-          ))
+        var icon = L.divIcon({
+          className: 'customIcon',
+          iconAnchor: [0, -5],
+          html: '<span style="' + markerHtmlStyles + '" />'
         })
-        var points = L.layerGroup(markers);
-        var overlayMaps = {
-          "points": points
-        };
+        markers.push(wkt.read(point.coordinates_text).toObject({title: point.name, icon: icon})
+          .on('click', L.bind(onPointClick, null, point))
+          .bindTooltip(point.name,
+          {
+            permanent: true,
+            direction: 'top'
+          }
+        ))
+      })
+      var points = L.layerGroup(markers);
+      var overlayMaps = {
+        "points": points
+      };
 
-        points.addTo(map);
-        clearPoints()
-        renderedPoints = points;
-      }
+      points.addTo(map);
+      clearPoints()
+      renderedPoints = points;
     });
 }
 

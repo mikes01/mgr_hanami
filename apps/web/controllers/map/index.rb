@@ -4,5 +4,6 @@ module Web::Controllers::Map
 
     def call(params)
     end
+    
   end
 end

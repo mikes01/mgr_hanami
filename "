@@ -1,0 +1,3 @@
+Usage: dokku config:set APP KEY1=VALUE1 [KEY2=VALUE2 ...]
+Whitespaces need to be escaped, i.e. KEY="VAL\ WITH\ SPACES"
+Must specify KEY and VALUE to set.

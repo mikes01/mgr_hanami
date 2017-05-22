@@ -4,22 +4,24 @@ wkt = new Wkt.Wkt();
 loadLines = function() {
   parameters = getMapBounds()
   parameters.road_types = lineTypes
+  if(lineTypes == null) {
+    clearLines();
+    return
+  }
   $.get("lines", { data: parameters },
     function (data) {
-      if(renderLines) {
-        var lines = []
-        data.forEach(function(line) {
-          lines.push(wkt.read( line.coordinates_text ).toObject(
-            {color: line.color, pane: 'lines'})
-            .on('click', L.bind(onLineClick, null, line)))
-        });
-        var polylines = L.layerGroup(lines).setZIndex(100).addTo(map);
-        lines.forEach(function(line) {
-          line.openPopup()
-        });
-        clearLines();
-        renderedLines = polylines;
-      }
+      var lines = []
+      data.forEach(function(line) {
+        lines.push(wkt.read( line.coordinates_text ).toObject(
+          {color: line.color, pane: 'lines'})
+          .on('click', L.bind(onLineClick, null, line)))
+      });
+      var polylines = L.layerGroup(lines).setZIndex(100).addTo(map);
+      lines.forEach(function(line) {
+        line.openPopup()
+      });
+      clearLines();
+      renderedLines = polylines;
     });
 }
 

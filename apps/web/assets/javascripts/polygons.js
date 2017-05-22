@@ -2,21 +2,23 @@ var renderedPolygons = [];
 wkt = new Wkt.Wkt();
 
 loadPolygons = function() {
+  if(polygonType == null) {
+    clearPolygons()
+    return
+  }
   parameters = getMapBounds()
-  parameters.unit_types = polygonTypes
+  parameters.unit_types = polygonType
   $.get("polygons", { data: parameters },
-    function (data) {
-      if(renderPolygons) {
-        var polygons = []
-        data.forEach(function(polygon) {
-          polygons.push(wkt.read( polygon.coordinates_text ).toObject({
-            color: polygon.color, pane: 'polygons'})
-            .on('click', L.bind(onPolygonClick, null, polygon)))
-        });
-        var polygonsToRender = L.layerGroup(polygons).setZIndex(-1).addTo(map);
-        clearPolygons();
-        renderedPolygons = polygonsToRender;
-      }
+    function (data) {      
+      var polygons = []
+      data.forEach(function(polygon) {
+        polygons.push(wkt.read( polygon.coordinates_text ).toObject({
+          color: polygon.color, pane: 'polygons'})
+          .on('click', L.bind(onPolygonClick, null, polygon)))
+      });
+      var polygonsToRender = L.layerGroup(polygons).setZIndex(-1).addTo(map);
+      clearPolygons();
+      renderedPolygons = polygonsToRender;
     });
 }
 
