@@ -16,8 +16,9 @@ $(document).on('submit', '#line_remote_form.new', function(e){
     data: $(this).serialize(),
     complete: function (data) {
       if(data.status == 201) {
-        point = wkt.read(data.responseJSON.coordinates_text).components[0][0]
-        map.setView([point.y, point.x])
+        // point = wkt.read(data.responseJSON.coordinates_text).components[0][0]
+        // map.setView([point.y, point.x])
+        loadLines()
         toastr.success('New line is added!', 'Success')
         $(".form-horizontal").hide()
       } else {
@@ -36,8 +37,9 @@ $(document).on('submit', '#line_remote_form.edit', function(e){
     data: $(this).serialize(),
     complete: function (data) {
       if(data.status == 200 || data.status == 201) {
-        point = wkt.read(data.responseJSON.coordinates_text).components[0][0]
-        map.setView([point.y, point.x])
+        loadLines()
+        //point = wkt.read(data.responseJSON.coordinates_text).components[0][0]
+        // map.setView([point.y, point.x])
         toastr.success('The line is updated!', 'Success')
         $(".form-horizontal").hide()
       } else {

@@ -13,11 +13,12 @@ loadPolygons = function() {
       var polygons = []
       data.forEach(function(polygon) {
         polygons.push(wkt.read( polygon.coordinates_text ).toObject({
-          color: polygon.color, pane: 'polygons'})
+          color: polygon.color, pane: 'polygons', className: polygon.name})
           .on('click', L.bind(onPolygonClick, null, polygon)))
       });
       var polygonsToRender = L.layerGroup(polygons).setZIndex(-1).addTo(map);
       clearPolygons();
+      $('#polygons_count').text(data.length)
       renderedPolygons = polygonsToRender;
     });
 }

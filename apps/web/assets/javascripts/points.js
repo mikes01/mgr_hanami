@@ -2,12 +2,12 @@ var renderedPoints = [];
 wkt = new Wkt.Wkt();
 
 loadPoints = function() {
-  parameters = getMapBounds()
-  parameters.object_types = pointTypes
   if(pointTypes == null ) {
     clearPoints();
     return
   }
+  parameters = getMapBounds()
+  parameters.object_types = pointTypes
   $.get("points", { data: parameters },
     function (data) {
       var markers = []
@@ -46,6 +46,7 @@ loadPoints = function() {
 
       points.addTo(map);
       clearPoints()
+      $('#points_count').text(data.length)
       renderedPoints = points;
     });
 }

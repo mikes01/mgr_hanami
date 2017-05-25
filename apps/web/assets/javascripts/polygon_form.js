@@ -17,7 +17,8 @@ $(document).on('submit', '#polygon_remote_form.new', function(e){
     complete: function (data) {
       if(data.status == 201) {
         point = wkt.read(data.responseJSON.coordinates_text).components[0][0][0]
-        map.setView([point.y, point.x])
+        //map.setView([point.y, point.x])
+        loadPolygons()
         toastr.success('New polygon is added!', 'Success')
         $(".form-horizontal").hide()
       } else {
@@ -37,7 +38,8 @@ $(document).on('submit', '#polygon_remote_form.edit', function(e){
     complete: function (data) {
       if(data.status == 200 || data.status == 201) {
         point = wkt.read(data.responseJSON.coordinates_text).components[0][0][0]
-        map.setView([point.y, point.x])
+        //map.setView([point.y, point.x])
+        loadPolygons()
         toastr.success('The polygon is updated!', 'Success')
         $(".form-horizontal").hide()
       } else {

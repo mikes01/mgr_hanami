@@ -2,18 +2,18 @@ var renderedLines = [];
 wkt = new Wkt.Wkt();
 
 loadLines = function() {
-  parameters = getMapBounds()
-  parameters.road_types = lineTypes
   if(lineTypes == null) {
     clearLines();
     return
   }
+  parameters = getMapBounds()
+  parameters.road_types = lineTypes
   $.get("lines", { data: parameters },
     function (data) {
       var lines = []
       data.forEach(function(line) {
         lines.push(wkt.read( line.coordinates_text ).toObject(
-          {color: line.color, pane: 'lines'})
+          {color: line.color, pane: 'lines', className: line.name})
           .on('click', L.bind(onLineClick, null, line)))
       });
       var polylines = L.layerGroup(lines).setZIndex(100).addTo(map);
@@ -21,6 +21,7 @@ loadLines = function() {
         line.openPopup()
       });
       clearLines();
+      $('#lines_count').text(data.length)
       renderedLines = polylines;
     });
 }
