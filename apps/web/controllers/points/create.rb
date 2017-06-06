@@ -17,7 +17,6 @@ module Web::Controllers::Points
     end
 
     def call(params)
-      
       if params.valid?
         repository = PointRepository.new
         point = repository.create(point_params)
